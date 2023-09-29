@@ -75,7 +75,49 @@ namespace PoliziaDiStato.Models
 
             return ListaVerbali;
         }
+        public static List<Verbale> GetAllVerbaliContestabili()
+        {
+            List<Verbale> ListaVerbali = new List<Verbale>();
+            string connectionString = ConfigurationManager.ConnectionStrings["PoliziaCoConnString"].ConnectionString.ToString();
+            SqlConnection conn = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("select DataViolazione, IndirizzoViolazione, Nominativo_Agente, DataTrascrizioneVerbale, Importo, DecurtamentoPunti, Contestabile, Nome, Cognome, Descrizione from verbale as v Inner JOIN TIPOVIOLAZIONE as tv ON v.IDviolazione = tv.IDviolazione Inner JOIN ANAGRAFICA as an ON v.IDanagrafica = an.IDanagrafica where Contestabile = 1", conn);
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    AnagraficaTrasgressore a = new AnagraficaTrasgressore
+                    {
+                        Nome = reader["Nome"].ToString(),
+                        Cognome = reader["Cognome"].ToString(),
+                    };
+                    TipoViolazione viol = new TipoViolazione
+                    {
+                        Descrizione = reader["Descrizione"].ToString()
+                    };
+                    Verbale v = new Verbale
+                    {
+                        //IDVerbale = Convert.ToInt16(reader["IDverbale"].ToString()),
+                        DataViolazione = Convert.ToDateTime(reader["DataViolazione"].ToString()),
+                        IndirizzoViolazione = reader["IndirizzoViolazione"].ToString(),
+                        Nominativo_Agente = reader["Nominativo_Agente"].ToString(),
+                        DataTrascrizioneVerbale = Convert.ToDateTime(reader["DataTrascrizioneVerbale"].ToString()),
+                        Importo = Convert.ToDouble(reader["Importo"].ToString()),
+                        DecurtamentoPunti = Convert.ToInt16(reader["DecurtamentoPunti"].ToString()),
+                        Contestabile = Convert.ToBoolean(reader["Contestabile"]),
+                        anagraficaTrasgressore = a,
+                        tipoViolazione = viol
+                    };
 
+                    ListaVerbali.Add(v);
+                }
+            }
+            catch (Exception ex) { }
+            finally { conn.Close(); }
+
+            return ListaVerbali;
+        }
         public static List<Verbale> GetVerbaliPunti(int punti)
         {
             List<Verbale> ListaVerbali = new List<Verbale>();

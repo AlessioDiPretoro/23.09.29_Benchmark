@@ -81,7 +81,12 @@ namespace PoliziaDiStato.Controllers
             v = Verbale.GetAllVerbali();
             return View(v);
         }
-
+        public ActionResult MostraVerbaliContestabili()
+        {
+            List<Verbale> v = new List<Verbale>();
+            v = Verbale.GetAllVerbaliContestabili();
+            return View(v);
+        }
         public ActionResult TotPunti()
         {
             List<Verbale> v = new List<Verbale>();

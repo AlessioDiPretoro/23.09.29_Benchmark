@@ -193,6 +193,7 @@
     <Content Include="Views\Verbali\TotVerbalePerAnagrafica.cshtml" />
     <Content Include="Views\Verbali\VerbalePunti.cshtml" />
     <Content Include="Views\Verbali\VerbaleEuro.cshtml" />
+    <Content Include="Views\Verbali\MostraVerbaliContestabili.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

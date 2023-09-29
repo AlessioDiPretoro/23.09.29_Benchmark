@@ -4,7 +4,12 @@
     ViewBag.Title = "MostraVerbali";
 }
 
-<h2>Tutti i verbali</h2>
+<h2>Tutti i verbali
+    <span>
+
+@Html.ActionLink("Mostra solo contestabili", "MostraVerbaliContestabili", "Verbali", new { area = "" }, new { @class = "btn btn-info" })
+    </span>
+    </h2>
 
 <div>
     <hr />
@@ -31,8 +36,8 @@
                 <td>@p.DecurtamentoPunti</td>
                 <td>@p.IndirizzoViolazione</td>
                 <td>@p.Nominativo_Agente</td>
-                <td>@p.Contestabile</td>
-                </tr>
+                <td><input class="form-check m-auto" type="checkbox" disabled="disabled" checked="@p.Contestabile" /></td>
+            </tr>
         }
     </table>
 </div>
