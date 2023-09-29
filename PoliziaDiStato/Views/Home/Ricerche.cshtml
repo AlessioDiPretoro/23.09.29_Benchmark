@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Ricerche";
+}
+
+<h2>Ricerche</h2>
+
+<div class="row row-cols-1 gap-3">
+    <div class="col d-flex justify-content-center">
+        @Html.ActionLink("Totale dei verbali trascritti raggruppati per trasgressore", "TotVerbalePerAnagrafica", "Verbali", new { area = "" }, new { @class = "btn btn-info" })
+    </div>
+    <div class="col d-flex justify-content-center"">
+        @Html.ActionLink("Totale dei punti decurtati raggruppati per trasgressore", "TotPunti", "Verbali", new { area = "" }, new { @class = "btn btn-info" })
+    </div>
+    <div class="col d-flex justify-content-center"">
+        @Html.ActionLink("Violazioni con almeno 10 punti decurtati", "VerbalePunti", "Verbali", new { area = "" }, new { @class = "btn btn-info" })
+    </div>
+    <div class="col d-flex justify-content-center"">
+        @Html.ActionLink("Violazioni con importo superiore a 400€", "VerbaleEuro", "Verbali", new { area = "" }, new { @class = "btn btn-info" })
+    </div>
+</div>

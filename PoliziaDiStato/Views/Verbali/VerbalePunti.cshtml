@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PoliziaDiStato.Models.Verbale>
+
+@{
+    ViewBag.Title = "VerbalePunti";
+}
+
+<h2>Verbali con almeno punti 10 decurtati</h2>
+
+<div>
+
+    <hr />
+    <table class="table table-hover table-bordered container text-center">
+        <tr>
+            <th>Anagrafica</th>
+            <th>Violazione</th>
+            <th>DataViolazione</th>
+            <th>DataTrascrizione</th>
+            <th>Importo</th>
+            <th>Punti</th>
+            <th>Indirizzo</th>
+            <th>Agente</th>
+            <th>Contestabile</th>
+        </tr>
+        @foreach (PoliziaDiStato.Models.Verbale p in Model)
+        {
+            <tr>
+                <td>@p.anagraficaTrasgressore.Nome @p.anagraficaTrasgressore.Cognome </td>
+                <td>@p.tipoViolazione.Descrizione</td>
+                <td>@p.DataViolazione.ToShortDateString()</td>
+                <td>@p.DataTrascrizioneVerbale.ToShortDateString()</td>
+                <td>@p.Importo.ToString("C2")</td>
+                <td>@p.DecurtamentoPunti</td>
+                <td>@p.IndirizzoViolazione</td>
+                <td>@p.Nominativo_Agente</td>
+                <td>@p.Contestabile</td>
+            </tr>
+        }
+    </table>
+</div>

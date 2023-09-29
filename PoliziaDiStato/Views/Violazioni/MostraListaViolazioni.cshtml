@@ -1,0 +1,25 @@
+﻿@model IEnumerable<PoliziaDiStato.Models.TipoViolazione>
+
+@{
+    ViewBag.Title = "MostraListaViolazioni";
+}
+
+<h2>MostraListaViolazioni</h2>
+
+<table class="table table-hover table-bordered container text-center">
+    <tr>
+        <th>ID</th>
+        <th>Descrizione</th>
+        <th>Modifica</th>
+        <th>Elimina</th>
+    </tr>
+    @foreach (PoliziaDiStato.Models.TipoViolazione p in Model)
+    {
+        <tr>
+            <td>@p.IDviolazione</td>
+            <td>@p.Descrizione</td>
+            <td>@Html.ActionLink("✒", "Modifica", new { id = p.IDviolazione }, new { @class = "btn btn-purple" })</td>
+            <td>@Html.ActionLink("🗑", "CancellaViolazione", new { id = p.IDviolazione }, new { @class = "btn btn-danger" })</td>
+        </tr>
+    }
+</table>

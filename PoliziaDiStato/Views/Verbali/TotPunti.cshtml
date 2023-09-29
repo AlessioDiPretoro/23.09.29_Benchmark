@@ -1,0 +1,24 @@
+﻿@model IEnumerable<PoliziaDiStato.Models.Verbale>
+
+@{
+    ViewBag.Title = "TotPunti";
+}
+
+<h2>Totale punti decurtati per anagrafe</h2>
+
+<div>
+    <hr />
+    <table class="table table-hover table-bordered container text-center">
+        <tr>
+            <th>Anagrafica</th>
+            <th>Totale punti</th>
+        </tr>
+        @foreach (PoliziaDiStato.Models.Verbale p in Model)
+        {
+            <tr>
+                <td>@p.anagraficaTrasgressore.Nome @p.anagraficaTrasgressore.Cognome </td>
+                <td>@p.DecurtamentoPunti</td>
+            </tr>
+        }
+    </table>
+</div>
